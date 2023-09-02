@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="board">
+	
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*) FROM board
+	</select>
+	
+   <select id="getList" resultType="Board">
+     
+      <!-- SELECT board.*
+      FROM board 
+      ORDER BY id DESC -->
+      
+	SELECT
+		b.id,
+		b.title,
+		b.contents,
+		b.tag,
+		b.reg_date,
+		b.member_id,
+		b.coord_id,
+		c.LATLNG_X latLngX,
+		c.LATLNG_Y latLngY,
+		c.LATLNG_NAME latLngName,
+		m.name memberName,
+		m.email memberEmail
+	FROM board b
+	LEFT OUTER JOIN coord c ON b.coord_id = c.coordId
+	LEFT OUTER JOIN member m ON b.member_id = m.id
+	WHERE c.coordId=#{coordId}
+   </select>
+    
+   <insert id="add">
+      INSERT INTO board
+      (title, contents, tag , reg_date, member_id, coord_id)
+      VALUES (#{title}, #{contents} , #{tag}, NOW(), #{memberId}, #{coordId})
+      <selectKey  resultType="int" keyProperty="id" keyColumn="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+   </insert>
+   
+   <delete id="delete">
+      DELETE FROM board
+      WHERE id=#{id}
+   </delete>
+   
+   <resultMap type="Board" id="BoardMap" autoMapping="true">
+		<id column="id" property="id"/>
+		
+		<collection property="attachs" column="board_id" ofType="Attach" javaType="ArrayList" autoMapping="true">
+			<id column="attach_id" property="id"/>
+		</collection>
+	</resultMap>
+	
+   <select id="item" resultMap="BoardMap">
+      SELECT board.*, attach.id attach_id, board_id, filename 
+      FROM board
+      LEFT JOIN attach ON board.id=attach.board_id
+      WHERE board.id=#{id}
+   </select>
+   
+   <!-- <select id="item" resultMap="BoardMap">
+      SELECT board.*, attach.id attach_id, board_id, filename 
+      FROM game
+      LEFT JOIN attach ON board.id=attach.board_id
+      WHERE board.id=#{id}
+   </select>
+    -->
+   <!--
+   <delete id="delete_member">
+      DELETE FROM game
+      WHERE id=#{id} AND member_id=#{memberId}
+   </delete>
+   
+   <resultMap type="Game" id="GameMap" autoMapping="true">
+      <id column="id" property="id"/>
+      
+      <collection property="attachs" column="game_id" ofType="Attach" javaType="ArrayList" autoMapping="true">
+         <id column="attach_id" property="id"/>
+      </collection>
+   </resultMap>
+
+   
+   
+   <update id="update">
+      UPDATE game
+      SET title=#{title}, price=#{price}, pub_date=#{pubDate}, contents=#{contents}
+      
+      <if test="publisherId != 0">, publisher_id=#{publisherId}</if>
+      
+      WHERE id=#{id} AND member_id=#{memberId}
+   </update>
+      <insert id="wish_add">
+      INSERT INTO wish
+      VALUES (#{memberId}, #{gameId})
+      </insert>
+      
+      <delete id="wish_delete">
+      DELETE FROM wish
+      WHERE game_id=#{gameId} AND member_id=#{memberId}
+      </delete>
+         -->
+</mapper>

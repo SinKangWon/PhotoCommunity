@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coord">
+
+<select id="List" resultType="Coord">
+      SELECT coord.*
+      FROM coord
+   </select>
+   
+ <select id="check" resultType="Board">
+ 	SELECT coordId, count(*) cnt
+ 	FROM coord
+ 	WHERE LATLNG_X=#{latLngX}
+ 	AND LATLNG_Y=#{latLngY}
+ </select>
+ 
+ <insert id="insert">
+	INSERT INTO coord(LATLNG_X, LATLNG_Y, LATLNG_NAME)
+	VALUES(#{latLngX}, #{latLngY},#{latLngName})
+	<selectKey resultType="int" keyProperty="coordId" keyColumn="coordid">
+		SELECT LAST_INSERT_ID()
+	</selectKey>
+ </insert>
+ 
+ 
+</mapper>
