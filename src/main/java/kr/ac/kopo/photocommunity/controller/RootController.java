@@ -1,4 +1,4 @@
-package kr.ac.kopo.photoboard.controller;
+package kr.ac.kopo.photocommunity.controller;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,23 +17,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.ac.kopo.photoboard.model.Attach;
-import kr.ac.kopo.photoboard.model.Board;
-import kr.ac.kopo.photoboard.model.Coord;
-import kr.ac.kopo.photoboard.model.Member;
-import kr.ac.kopo.photoboard.service.BoardService;
-import kr.ac.kopo.photoboard.service.CoordService;
-import kr.ac.kopo.photoboard.service.MemberService;
+import kr.ac.kopo.photocommunity.model.Attach;
+import kr.ac.kopo.photocommunity.model.Board;
+import kr.ac.kopo.photocommunity.model.Coord;
+import kr.ac.kopo.photocommunity.model.Member;
+import kr.ac.kopo.photocommunity.service.BoardService;
+import kr.ac.kopo.photocommunity.service.CoordService;
+import kr.ac.kopo.photocommunity.service.MemberService;
 
 @Controller
 public class RootController {
-	final String uploadPath = "c://Users/ekdrm/PCupload/";
+	final String uploadPath = "d://upload/";
 	@RequestMapping("/")
 	public String index(Model model) {
 		
-		List<Coord> coordlist = coordService.List(); // list 라는 이림의 배열을 선언한 후 그 요소는 list 메소드를 service요청하여 지정한다
+		List<Coord> coordlist = coordService.List();
 		
-		model.addAttribute("listB", coordlist); //boardlist 변수를 "list"라는 속성으로 Attribute에 add(추가)한다.
+		model.addAttribute("listB", coordlist);
 		
 		return "index";
 	
@@ -78,15 +78,6 @@ public class RootController {
 		Board item = boardService.item(id);
 		
 		model.addAttribute("item", item);
-		
-		List<Attach> attachs = item.getAttachs();
-		
-		for (Attach attach : attachs) {
-			String filename = attach.getFilename();
-			System.out.println(filename);
-			System.out.println(model);
-		}
-		
 		
 		return "detail";
 	}
@@ -139,9 +130,9 @@ public class RootController {
 
 	@RequestMapping("/delete")
 	public String delete(int id) {
-		boardService.delete(id); // boardservice에 boardnum delete요청
-
-		return "index"; // list로 돌어와
+		boardService.delete(id);
+		
+		return "index";
 	}
 
 	@GetMapping("/login")
@@ -185,7 +176,7 @@ public class RootController {
 		return "redirect:.";
 	}
 
-	@ResponseBody // ? 왜 여기서 responsebody를 썼지?
+	@ResponseBody
 	@GetMapping("/checkId/{id}")
 	public String checkId(@PathVariable String id) {
 		if (memberService.checkId(id))

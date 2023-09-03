@@ -1,4 +1,4 @@
-package kr.ac.kopo.photoboard.pager;
+package kr.ac.kopo.photocommunity.pager;
 
 import java.util.ArrayList;
 import java.util.List;

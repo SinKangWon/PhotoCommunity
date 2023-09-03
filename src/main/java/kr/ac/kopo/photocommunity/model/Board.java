@@ -1,4 +1,4 @@
-package kr.ac.kopo.photoboard.model;
+package kr.ac.kopo.photocommunity.model;
 
 import java.util.Date;
 import java.util.List;

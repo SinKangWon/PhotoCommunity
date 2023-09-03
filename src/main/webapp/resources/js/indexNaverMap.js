@@ -1,4 +1,4 @@
-$(function() {
+		$(function() {
 			
 			initMap();
 
@@ -21,7 +21,7 @@ $(function() {
 						126.98732600494576), //지도 시작 지점
 				zoom : 12
 			});
-			/* 정보창 */
+			 정보창 
 			
 			
 			for (var i = 0; i < locArr.length; i++) {
@@ -29,8 +29,8 @@ $(function() {
 				
 				//let dataB = locArr[i].coords.split(", ");
 				
-				/* let x = dataB[0];
-				let y = dataB[1]; */
+				 let x = dataB[0];
+				let y = dataB[1]; 
 				
 				var marker = new naver.maps.Marker({
 					id : locArr[i].coordId,
@@ -39,13 +39,9 @@ $(function() {
 					//position : new naver.maps.LatLng(locArr[i].coords)
 				// 지역구의 위도 경도 넣기 
 				});
-// 				console.log("change1");
+	
 				
-// 				console.log(marker.id);
-				/* 정보창 */
-						
-				
-				/*console.log(locArr[i].id + locArr[i].title);*/
+				console.log(locArr[i].id + locArr[i].title);
 						
 				markers.push(marker); // 생성한 마커를 배열에 담는다.
 		
@@ -94,6 +90,10 @@ $(function() {
 					  $(".modal-body tr").append(boardRegDate);
 					  boardRegDate.text("작성일");
 					  
+					  const boardLoc = $("<th>");
+					  $(".modal-body tr").append(boardLoc);
+					  boardLoc.text("지역");
+					  
 					  const boardWriter = $("<th>");
 					  $(".modal-body tr").append(boardWriter);
 					  boardWriter.text("작성자");
@@ -113,9 +113,15 @@ $(function() {
 						const tr = $("<tr>");
 						$(".modal-body tbody").append(tr);
 						
+						
 						const id = $("<td>");
 						$(".modal-body tr").append(id);
-						id.text(item.id);
+						
+						const a = $("<a>");
+						a.attr("href", "detail/" + item.id)
+						a.text(item.id);
+						
+						id.append(a);
 						
 						const title = $("<td>");
 						$(".modal-body tr").append(title);
@@ -128,7 +134,10 @@ $(function() {
 						const regDate = $("<td>");
 						$(".modal-body tr").append(regDate);
 						regDate.text(item.regDate);
-							  
+						
+						const latLngName = $("<td>");
+						$(".modal-body tr").append(latLngName);
+						latLngName.text(item.latLngName);
 						
 						const memberName = $("<td>");
 						$(".modal-body tr").append(memberName);
@@ -146,6 +155,7 @@ $(function() {
 						
 			}
 		}
+		
 		let isCheck;
 
 		   function checkId(mode) {
@@ -160,24 +170,7 @@ $(function() {
 		         checkId_Sync();
 		   }
 		   
-		   function checkId_Sync() {
-		      const form = document.signup_form;
-		      
-		      const xhr = new XMLHttpRequest();
-		      
-		      xhr.open("GET", "checkId/" + form.id.value, false);
-		      
-		      xhr.send();
-		      
-		      const result = xhr.responseText;
-		      console.log("[동기] 응답: " + result);
-		      
-		      if(result == "OK") {
-		         isCheck = form.id.value;
-		         alert("[동기] 사용 가능한 아이디 입니다");
-		      } else
-		         alert("[동기] 이미 사용중인 아이디 입니다");
-		   }
+		  
 		   
 		   function checkId_Async() {
 		      const form = document.signup_form;
@@ -190,13 +183,13 @@ $(function() {
 		         if(xhr.readyState == XMLHttpRequest.DONE) {
 		            if(xhr.status == 200) {
 		               const result = xhr.responseText;
-		               console.log("[비동기] 응답: " + result);
+		               console.log("응답: " + result);
 		               
 		               if(result == "OK") {
 		                  isCheck = form.id.value;
-		                  alert("[비동기] 사용 가능한 아이디 입니다");
+		                  alert("사용 가능한 아이디 입니다");
 		               } else
-		                  alert("[비동기] 이미 사용중인 아이디 입니다");
+		                  alert("이미 사용중인 아이디 입니다");
 		            }
 		         }
 		      };

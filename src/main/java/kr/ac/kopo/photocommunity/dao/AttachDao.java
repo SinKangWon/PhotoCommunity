@@ -1,6 +1,6 @@
-package kr.ac.kopo.photoboard.dao;
+package kr.ac.kopo.photocommunity.dao;
 
-import kr.ac.kopo.photoboard.model.Attach;
+import kr.ac.kopo.photocommunity.model.Attach;
 
 public interface AttachDao {
 

@@ -1,8 +1,8 @@
-package kr.ac.kopo.photoboard.dao;
+package kr.ac.kopo.photocommunity.dao;
 
 import java.util.List;
 
-import kr.ac.kopo.photoboard.model.Board;
+import kr.ac.kopo.photocommunity.model.Board;
 
 public interface BoardDao {
 

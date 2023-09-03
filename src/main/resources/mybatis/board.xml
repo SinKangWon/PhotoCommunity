@@ -55,9 +55,11 @@
 	</resultMap>
 	
    <select id="item" resultMap="BoardMap">
-      SELECT board.*, attach.id attach_id, board_id, filename 
+      SELECT board.*, attach.id attach_id, board_id, filename, LATLNG_NAME, name memberName
       FROM board
       LEFT JOIN attach ON board.id=attach.board_id
+      LEFT JOIN member ON board.member_id = member.id
+      LEFT JOIN coord ON board.coord_id = coord.coordId
       WHERE board.id=#{id}
    </select>
    

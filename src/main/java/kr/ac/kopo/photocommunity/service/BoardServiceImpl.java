@@ -1,4 +1,4 @@
-package kr.ac.kopo.photoboard.service;
+package kr.ac.kopo.photocommunity.service;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.ac.kopo.photoboard.dao.AttachDao;
-import kr.ac.kopo.photoboard.dao.BoardDao;
-import kr.ac.kopo.photoboard.model.Attach;
-import kr.ac.kopo.photoboard.model.Board;
+import kr.ac.kopo.photocommunity.dao.AttachDao;
+import kr.ac.kopo.photocommunity.dao.BoardDao;
+import kr.ac.kopo.photocommunity.model.Attach;
+import kr.ac.kopo.photocommunity.model.Board;
 @Service
 public class BoardServiceImpl implements BoardService {
 

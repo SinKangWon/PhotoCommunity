@@ -1,10 +1,10 @@
-package kr.ac.kopo.photoboard.service;
+package kr.ac.kopo.photocommunity.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.ac.kopo.photoboard.dao.MemberDao;
-import kr.ac.kopo.photoboard.model.Member;
+import kr.ac.kopo.photocommunity.dao.MemberDao;
+import kr.ac.kopo.photocommunity.model.Member;
 
 @Service
 public class MemberServiceImpl implements MemberService {

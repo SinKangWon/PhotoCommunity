@@ -1,13 +1,13 @@
-package kr.ac.kopo.photoboard.service;
+package kr.ac.kopo.photocommunity.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.ac.kopo.photoboard.dao.CoordDao;
-import kr.ac.kopo.photoboard.model.Board;
-import kr.ac.kopo.photoboard.model.Coord;
+import kr.ac.kopo.photocommunity.dao.CoordDao;
+import kr.ac.kopo.photocommunity.model.Board;
+import kr.ac.kopo.photocommunity.model.Coord;
 
 @Service
 public class CoordServiceImpl implements CoordService {

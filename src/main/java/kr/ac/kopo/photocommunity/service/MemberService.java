@@ -1,6 +1,6 @@
-package kr.ac.kopo.photoboard.service;
+package kr.ac.kopo.photocommunity.service;
 
-import kr.ac.kopo.photoboard.model.Member;
+import kr.ac.kopo.photocommunity.model.Member;
 
 public interface MemberService {
 

@@ -1,10 +1,10 @@
-package kr.ac.kopo.photoboard.dao;
+package kr.ac.kopo.photocommunity.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.ac.kopo.photoboard.model.Attach;
+import kr.ac.kopo.photocommunity.model.Attach;
 
 
 @Repository

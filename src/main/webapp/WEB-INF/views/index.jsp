@@ -23,6 +23,13 @@ footer {
 	rel="stylesheet">
 
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
+<script type="text/javascript"
+	src="/resources/js/bootstrap.bundle.min.js"></script>
+<!-- <script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=o868k3gux3&submodules=geocoder"></script>
+ -->	<script type="text/javascript" 
+	src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=o868k3gux3"></script>
+
 </head>
 <body>
 
@@ -43,7 +50,7 @@ footer {
 		tabindex="-1" id="offcanvasRight"
 		aria-labelledby="offcanvasRightLabel">
 		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasRightLabel">MyPage</h5>
+			<h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
 				aria-label="Close"></button>
 		</div>
@@ -52,20 +59,23 @@ footer {
 			<c:if test="${sessionScope.member == null}">
 				<!-- Button trigger modal -->
 				<div>
-					<button type="button" class="btn btn-sm btn-primary"
+					<button type="button" class="btn btn-sm btn-dark"
 						data-bs-toggle="modal" data-bs-target="#loginModal">로그인</button>
-					<button type="button" class="btn btn-sm btn-primary"
+					<button type="button" class="btn btn-sm btn-dark"
 						data-bs-toggle="modal" data-bs-target="#SignUpModal">회원가입</button>
 				</div>
 			</c:if>
 
 			<c:if test="${sessionScope.member != null}">
 				<div>
-					<div>${sessionScope.member.name}　　　　　　　　　
-					<a class="btn btn-dark btn-sm" href="add">게시물 등록</a></div>
-					
+					<div>${sessionScope.member.name}
+						<a class="btn btn-dark btn-sm" href="add">게시물 등록</a>
+					</div>
+
 				</div>
-				<div><a class="btn btn-dark btn-sm" href="logout">로그아웃</a></div>
+				<div>
+					<a class="btn btn-dark btn-sm" href="logout">로그아웃</a>
+				</div>
 			</c:if>
 		</div>
 	</div>
@@ -114,18 +124,22 @@ footer {
 				</div>
 				<div>
 					<form method="post" action="/login">
-						<div class="form-group">
-							<label class="form-label">아이디:</label> <input type="text"
-								name="id" class="form-control form-control-sm">
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Id:</span>
+							<input type="text" name="id" class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
 						</div>
 
-						<div class="form-group">
-							<label class="form-label">비밀번호:</label> <input type="password"
-								name="passwd" class="form-control form-control-sm">
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-sm">PW:</span><input type="password" name="passwd"
+								class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
 						</div>
 
 						<div class="form-group mt-3">
-							<button class="btn btn-sm btn-primary">로그인</button>
+							<button class="btn btn-sm btn-outline-dark">로그인</button>
 						</div>
 					</form>
 				</div>
@@ -137,50 +151,62 @@ footer {
 		</div>
 	</div>
 	<!-- signup modal  -->
-	 <div class="modal fade" id="SignUpModal" tabindex="-1">
-		<div class="modal-dialog modal-lg">
+	<div class="modal fade" id="SignUpModal" tabindex="-1">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5">SIGNUP</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
-				</div>		
-     	 <div>
-         <form name="signup_form" method="post" action="signup">    
-              
-            <div class="form_group">
-               <label>아이디:</label>
-               <input type="text" name="id" placeholder="아이디를 입력해 주세요">
-               <button type="button" onclick="checkId(false)">[동기] 중복확인</button>
-               <button type="button" onclick="checkId(true)">[비동기] 중복확인</button>
-            </div>
-            
-            <div class="form_group">
-               <label>비밀번호:</label>
-               <input type="password" name="passwd">
-            </div>
-            
-            <div class="form_group">
-               <label>비밀번호 확인:</label>
-               <input type="password" name="passwd_valid">
-            </div>
-            
-            <div class="form_group">
-               <label>이름:</label>
-               <input type="text" name="name" placeholder="이름을 입력해 주세요">
-            </div>
-            
-            <div class="form_group">
-               <label>E-mail:</label>
-               <input type="text" name="email" placeholder="이메일을 입력해 주세요">
-            </div>
-            
-            <div class="form-group mt-3">
-               <button type="button" onclick="signup()">가입하기</button>
-               <a href="/"><button type="button">취소</button></a>
-            </div>
-         </form>         
-      </div>
+				</div>
+				<div>
+					<form name="signup_form" method="post" action="signup">
+
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-sm">아이디:</span>
+							<input type="text" name="id" placeholder="아이디를 입력해 주세요"
+								class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
+							<button type="button" class="btn btn-sm btn-outline-dark"
+								onclick="checkId(true)">중복확인</button>
+						</div>
+
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-sm">비밀번호:</span>
+							<input type="password" name="passwd" class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
+						</div>
+
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-sm">비밀번호
+								확인:</span> <input type="password" name="passwd_valid"
+								class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
+						</div>
+
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-sm">이름:</span>
+							<input type="text" name="name" placeholder="이름을 입력해 주세요"
+								class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
+						</div>
+
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+							<input type="text" name="email" placeholder="이메일을 입력해 주세요"
+								class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
+						</div>
+
+						<div class="form-group mt-3">
+							<button class="btn btn-sm btn-outline-dark" type="button"
+								onclick="signup()">가입하기</button>
+							<a href="/"><button class="btn btn-sm btn-outline-dark"
+									type="button">취소</button></a>
+						</div>
+					</form>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-sm btn-secondary"
 						data-bs-dismiss="modal">닫기</button>
@@ -190,6 +216,4 @@ footer {
 	</div>
 	<footer>Copyright(c) KangWon Shin ALL right reserved.</footer>
 </body>
-
-<script type="text/javascript" src="/resources/js/indexNaverMap.js"></script>
 </html>

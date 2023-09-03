@@ -7,10 +7,10 @@
 	</settings>
 		
 	<typeAliases>
-		<typeAlias type="kr.ac.kopo.photoboard.model.Board" alias="Board"/>
-		<typeAlias type="kr.ac.kopo.photoboard.model.Member" alias="Member"/>
-		<typeAlias type="kr.ac.kopo.photoboard.model.Coord" alias="Coord"/>
-		<typeAlias type="kr.ac.kopo.photoboard.model.Attach" alias="Attach"/>
+		<typeAlias type="kr.ac.kopo.photocommunity.model.Board" alias="Board"/>
+		<typeAlias type="kr.ac.kopo.photocommunity.model.Member" alias="Member"/>
+		<typeAlias type="kr.ac.kopo.photocommunity.model.Coord" alias="Coord"/>
+		<typeAlias type="kr.ac.kopo.photocommunity.model.Attach" alias="Attach"/>
 	</typeAliases>
 	
 	<mappers>

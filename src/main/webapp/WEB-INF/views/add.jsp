@@ -4,6 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+footer {
+	background: #555;
+	color: #fff;
+	text-align: center;
+	padding: 1%;
+}
+</style>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -47,7 +55,7 @@
 		tabindex="-1" id="offcanvasRight"
 		aria-labelledby="offcanvasRightLabel">
 		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasRightLabel">MyPage</h5>
+			<h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
 				aria-label="Close"></button>
 		</div>
@@ -57,7 +65,7 @@
 		<c:if test="${sessionScope.member == null}">			
 			<!-- Button trigger modal -->
 			<div>
-				<button type="button" class="btn btn-sm btn-primary"
+				<button type="button" class="btn btn-sm btn-dark"
 					data-bs-toggle="modal" data-bs-target="#loginModal">로그인
 				</button>
 			</div>
@@ -67,33 +75,22 @@
 			<div>
 				<div>${sessionScope.member.name}</div>
 			</div>
-			<div>
-				<a href="logout">로그아웃</a>
-			</div>
+				<div><a class="btn btn-dark btn-sm" href="logout">로그아웃</a></div>
 		</c:if>
 		</div>
 	</div>
-	<div>
-		<button type="button" class="btn btn-sm btn-primary"
-			data-bs-toggle="modal" data-bs-target="#addModal">등록</button>
-	</div>
+	
 	<div class="search">
-		<input id="address" type="text" placeholder="검색할 주소"> <input
+		<input id="address" type="text" placeholder="주소 검색 후 알림창 복사"> <input
 			id="submit" type="button" value="주소검색">
+			
+		<button type="button" class="btn btn-sm btn-outline-warning"
+			data-bs-toggle="modal" data-bs-target="#addModal">등록</button>
+
 	</div>
-	<div id="map" style="height: 700px; width: 80%;"></div>
+	<div id="map" style="height: 818px; width:100%;"></div>
 	<div>
-		<table>
-			<thead>
-				<tr>
-					<th>주소</th>
-					<th>위도</th>
-					<th>경도</th>
-				</tr>
-			</thead>
-			<tbody id="mapList"></tbody>
-		</table>
-	</div>
+		</div>
 	<div class="modal fade" id="addModal" tabindex="-1">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
@@ -168,31 +165,38 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5">LOGIN</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
 				</div>
-				<div class="modal-body">
+				<div>
 					<form method="post" action="/login">
-						<div class="form-group">
-							<label class="form-label">아이디:</label> 
-							<input type="text" name="id" class="form-control form-control-sm">
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Id:</span>
+							<input type="text" name="id" class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
 						</div>
 
-						<div class="form-group">
-							<label class="form-label">비밀번호:</label> 
-							<input type="password" name="passwd" class="form-control form-control-sm">
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-sm">PW:</span><input type="password" name="passwd"
+								class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
 						</div>
 
 						<div class="form-group mt-3">
-							<button class="btn btn-sm btn-primary">로그인</button>							
+							<button class="btn btn-sm btn-outline-dark">로그인</button>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-sm btn-secondary"
+						data-bs-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<footer>Copyright(c) KangWon Shin ALL right reserved.</footer>
 </body>
 <script>
 	//지도를 그려주는 함수 실행
@@ -278,13 +282,13 @@
 	//검색정보를 테이블로 작성해주고, 지도에 마커를 찍어준다.
 	function insertAddress(address, latitude, longitude) {
 		var mapList = "";
-		mapList += "<tr>"
-		mapList += "	<td>" + address + "</td>"
-		mapList += "	<td>" + longitude + "</td>"
-		mapList += "	<td>" + latitude + "</td>"
-		mapList += "</tr>"
+		mapList += ""
+		mapList += "지역:　" + address
+		mapList += "　위도:　" + longitude
+		mapList += "　경도:　" + latitude
+		mapList += ""
 
-		$('#mapList').append(mapList);
+		alert(mapList);
 
 		var map = new naver.maps.Map('map', {
 			center : new naver.maps.LatLng(longitude, latitude),
