@@ -16,23 +16,22 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public void add(Board item) {
 			sql.insert("board.add", item);
-		
 	}
 	
 	@Override
-	public void delete(int id) {
-			sql.delete("board.delete",id);
+	public void delete(Long boardNum) {
+			sql.delete("board.delete",boardNum);
 		
 	}
 
 	@Override
-	public List<Board> getList(int coordId) {
-		return sql.selectList("board.getList", coordId);
+	public List<Board> getList(Long boardNum) {
+		return sql.selectList("board.getList", boardNum);
 	}
 
 	@Override
-	public Board item(int id) {
-		return  sql.selectOne("board.item", id);
+	public Board item(Long boardNum) {
+		return  sql.selectOne("board.item", boardNum);
 	}
 
 	

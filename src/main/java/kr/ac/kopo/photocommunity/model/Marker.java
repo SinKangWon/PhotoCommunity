@@ -7,13 +7,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class Member {
-	private Long memberNum;
-	private String id;
-	private String passwd;
-	private String name;
-	private String email;
-
+@NoArgsConstructor
+public class Marker {
+	public Long markerNum;
+	//위도
+	public Double lat;
+	//경도
+	public Double lon;
+	public String address;
+	
 }

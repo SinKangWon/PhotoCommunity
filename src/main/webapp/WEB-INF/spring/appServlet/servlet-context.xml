@@ -16,7 +16,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- location 은 파일의 위치/ mapping은 표시할 url주소 -->
-	<resources location="file:///d:/upload/" mapping="/upload/**"></resources>
+	<resources location="file:///c:/upload/photocommunity" mapping="/upload/**"></resources>
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

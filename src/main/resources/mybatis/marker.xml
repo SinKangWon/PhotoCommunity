@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="marker">
+
+<select id="List" resultType="Marker">
+      SELECT marker.*
+      FROM marker
+   </select>
+   
+ <select id="check" resultType="int">
+ 	SELECT count(marker_num) cnt
+ 	FROM marker
+ 	WHERE lat=#{lat}
+ 	AND lon=#{lon}
+ </select>
+ 
+ <insert id="insert">
+	INSERT INTO marker(lat, lon, name)
+	VALUES(#{lat}, #{lon},#{name})
+	<selectKey resultType="Long" keyProperty="markerId" keyColumn="marker_id">
+		SELECT LAST_INSERT_ID()
+	</selectKey>
+ </insert>
+	<select id="findMarkerInfo" resultType="Long">
+		SELECT marker_num
+		FROM marker
+		WHERE lat=#{lat}
+		AND lon=#{lon}
+	</select>
+ 
+ 
+</mapper>

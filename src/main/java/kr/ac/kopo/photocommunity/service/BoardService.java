@@ -1,5 +1,6 @@
 package kr.ac.kopo.photocommunity.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import kr.ac.kopo.photocommunity.model.Board;
@@ -8,11 +9,11 @@ public interface BoardService {
 
 	void add(Board item);
 	
-	void delete(int id);
+	void delete(Long BoardNum);
 
-	List<Board> getList(int coordId);
+	List<Board> getList(Long MarkerNum);
 
-	Board item(int id);
+	Board item(Long markerNum);
 
 
 }

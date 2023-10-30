@@ -32,13 +32,10 @@
   .title
   { margin-left: 2%;
   	margin-top: 1%;
-  	
- 
   }
   .almanglee
   {margin-left:35%;
   margin-top: 0%;
-  
   }
   .tag{
   margin-top: 10%;
@@ -61,9 +58,9 @@
 			</div>
 		</nav>
 </header>
-	<h1 class="title">제목: ${item.title}</h1> 
-	<div class="almanglee">
-			<div>내용:${item.contents}</div>
+	<h1 class="title">제목: ${item.title}</h1>
+	<div class="almanglee" style="margin-bottom: 60px">
+			<div>내용: ${item.contents}</div>
 			
 			<div>작성자: ${item.memberName}</div>
 			

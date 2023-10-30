@@ -8,100 +8,55 @@
 	</select>
 	
    <select id="getList" resultType="Board">
-     
-      <!-- SELECT board.*
-      FROM board 
-      ORDER BY id DESC -->
-      
 	SELECT
 		b.id,
 		b.title,
 		b.contents,
 		b.tag,
 		b.reg_date,
-		b.member_id,
-		b.coord_id,
-		c.LATLNG_X latLngX,
-		c.LATLNG_Y latLngY,
-		c.LATLNG_NAME latLngName,
+		b.member_num,
+		b.marker_id,
+		c.lat lat,
+		c.lon lon,
+		c.name markerName,
 		m.name memberName,
 		m.email memberEmail
 	FROM board b
-	LEFT OUTER JOIN coord c ON b.coord_id = c.coordId
-	LEFT OUTER JOIN member m ON b.member_id = m.id
-	WHERE c.coordId=#{coordId}
+	LEFT OUTER JOIN marker c ON b.marker_num = c.marker_num
+	LEFT OUTER JOIN member m ON b.member_num = m.member_num
+	WHERE c.marker_num=#{markerNum}
    </select>
     
    <insert id="add">
       INSERT INTO board
-      (title, contents, tag , reg_date, member_id, coord_id)
-      VALUES (#{title}, #{contents} , #{tag}, NOW(), #{memberId}, #{coordId})
-      <selectKey  resultType="int" keyProperty="id" keyColumn="id">
+      (title, contents, tag , reg_date, member_num, marker_num)
+      VALUES (#{title}, #{contents} , #{tag}, NOW(), #{memberNum}, #{markerNum})
+      <selectKey  resultType="Long" keyProperty="id" keyColumn="id">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
    </insert>
    
    <delete id="delete">
       DELETE FROM board
-      WHERE id=#{id}
+      WHERE board_num=#{boardNum}
    </delete>
    
    <resultMap type="Board" id="BoardMap" autoMapping="true">
 		<id column="id" property="id"/>
 		
-		<collection property="attachs" column="board_id" ofType="Attach" javaType="ArrayList" autoMapping="true">
+		<collection property="attachs" column="board_num" ofType="Attach" javaType="ArrayList" autoMapping="true">
 			<id column="attach_id" property="id"/>
 		</collection>
 	</resultMap>
 	
    <select id="item" resultMap="BoardMap">
-      SELECT board.*, attach.id attach_id, board_id, filename, LATLNG_NAME, name memberName
+      SELECT board.*, attach.attach_num attach_num, board_num, filename, LATLNG_NAME, name name
       FROM board
-      LEFT JOIN attach ON board.id=attach.board_id
-      LEFT JOIN member ON board.member_id = member.id
-      LEFT JOIN coord ON board.coord_id = coord.coordId
-      WHERE board.id=#{id}
+      LEFT JOIN attach ON board.board_num=attach.board_num
+      LEFT JOIN member ON board.member_num = member.member_num
+      LEFT JOIN marker ON board.marker_num = marker.marker_num
+      WHERE board.board_num=#{boardNum}
    </select>
-   
-   <!-- <select id="item" resultMap="BoardMap">
-      SELECT board.*, attach.id attach_id, board_id, filename 
-      FROM game
-      LEFT JOIN attach ON board.id=attach.board_id
-      WHERE board.id=#{id}
-   </select>
-    -->
-   <!--
-   <delete id="delete_member">
-      DELETE FROM game
-      WHERE id=#{id} AND member_id=#{memberId}
-   </delete>
-   
-   <resultMap type="Game" id="GameMap" autoMapping="true">
-      <id column="id" property="id"/>
-      
-      <collection property="attachs" column="game_id" ofType="Attach" javaType="ArrayList" autoMapping="true">
-         <id column="attach_id" property="id"/>
-      </collection>
-   </resultMap>
 
-   
-   
-   <update id="update">
-      UPDATE game
-      SET title=#{title}, price=#{price}, pub_date=#{pubDate}, contents=#{contents}
-      
-      <if test="publisherId != 0">, publisher_id=#{publisherId}</if>
-      
-      WHERE id=#{id} AND member_id=#{memberId}
-   </update>
-      <insert id="wish_add">
-      INSERT INTO wish
-      VALUES (#{memberId}, #{gameId})
-      </insert>
-      
-      <delete id="wish_delete">
-      DELETE FROM wish
-      WHERE game_id=#{gameId} AND member_id=#{memberId}
-      </delete>
-         -->
+
 </mapper>

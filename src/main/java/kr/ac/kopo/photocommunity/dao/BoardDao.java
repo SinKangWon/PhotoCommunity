@@ -8,11 +8,11 @@ public interface BoardDao {
 
 	void add(Board item);
 
-	List<Board> getList(int coordId);
+	List<Board> getList(Long markerNum);
 
-	void delete(int id);
+	void delete(Long boardNum);
 
-	Board item(int id);
+	Board item(Long boardNum);
 
 
 }

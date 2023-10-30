@@ -9,14 +9,14 @@
 	<typeAliases>
 		<typeAlias type="kr.ac.kopo.photocommunity.model.Board" alias="Board"/>
 		<typeAlias type="kr.ac.kopo.photocommunity.model.Member" alias="Member"/>
-		<typeAlias type="kr.ac.kopo.photocommunity.model.Coord" alias="Coord"/>
+		<typeAlias type="kr.ac.kopo.photocommunity.model.Marker" alias="Marker"/>
 		<typeAlias type="kr.ac.kopo.photocommunity.model.Attach" alias="Attach"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mybatis/board.xml"/>
 		<mapper resource="mybatis/member.xml"/>
-		<mapper resource="mybatis/coord.xml"/>
+		<mapper resource="mybatis/marker.xml"/>
 		<mapper resource="mybatis/attach.xml"/>
 	</mappers>
 </configuration>

@@ -7,27 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.photocommunity.model.Board;
-import kr.ac.kopo.photocommunity.model.Coord;
+import kr.ac.kopo.photocommunity.model.Marker;
 
 @Repository
-public class CoordDaoImpl implements CoordDao {
+public class MarkerDaoImpl implements MarkerDao {
 
 	@Autowired
 	SqlSession sql;
 
 	@Override
-	public List<Coord> List(){
-		return sql.selectList("coord.List");
+	public List<Marker> List(){
+		return sql.selectList("marker.List");
 	}
 
 	@Override
-	public Board checkCoord(Board item) {
-		return sql.selectOne("coord.check", item);
+	public Long findMarkerInfo(Marker markerInfo) {
+		return sql.selectOne("marker.markerInfo", markerInfo);
 	}
 
 	@Override
-	public void add(Board item) {
-		sql.insert("coord.insert",item);
+	public void add(Marker markerInfo) {
+		sql.insert("marker.insert",markerInfo);
 		
 	}
+
 }
