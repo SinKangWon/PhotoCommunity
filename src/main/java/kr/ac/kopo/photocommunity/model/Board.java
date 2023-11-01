@@ -29,6 +29,7 @@ public class Board {
 	private Double lon;
 	private String address;
 
+	private Long memberNum;
 	private String memberId;
 	private String memberName;
 	private String memberEmail;

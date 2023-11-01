@@ -10,4 +10,5 @@ public interface MemberDao {
 
 	int checkId(String id);
 
+    Long findByMemberId(String id);
 }

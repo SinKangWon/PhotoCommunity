@@ -3,6 +3,7 @@ package kr.ac.kopo.photocommunity.service;
 import java.io.IOException;
 import java.util.List;
 
+import kr.ac.kopo.photocommunity.dao.MemberDao;
 import kr.ac.kopo.photocommunity.global.FileUpload;
 import kr.ac.kopo.photocommunity.model.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	AttachDao attachDao;
+
+	@Autowired
+	MemberDao memberDao;
 	
 	@Override
 	public List<Board> getList(Long boardNum) {
@@ -34,6 +38,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	@Transactional
 	public void add(Board item) {
+
 		Marker markerInfo = new Marker();
 		markerInfo.setLat(item.getLat());
 		markerInfo.setLon(item.getLon());
@@ -42,16 +47,16 @@ public class BoardServiceImpl implements BoardService {
 		markerInfo.setMarkerNum(markerService.findMarkerInfo(markerInfo));
 		if (markerInfo.getMarkerNum() == null) {
 			markerService.add(markerInfo);
-			markerInfo.setMarkerNum(markerService.findMarkerInfo(markerInfo));
 		}
 
 		item.setMarkerNum(markerInfo.markerNum);
 		item.setLat(markerInfo.lat);
 		item.setLon(markerInfo.lon);
 
+		item.setMemberNum(memberDao.findByMemberId(item.getMemberId()));
 		item.setAttachs(FileUpload.filesUpload(item.getAttach()));
+		dao.add(item);
 
-		item.setBoardNum(dao.add(item));
 		if(item.getAttachs() != null) {
 			for(Attach attach : item.getAttachs()) {
 				attach.setBoardNum(item.getBoardNum());

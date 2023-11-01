@@ -66,7 +66,7 @@
 			
 			<div>작성일: <fmt:formatDate value="${item.regDate}" pattern="yyyy년 MM월 dd일"/></div>
 			
-			<div>지역: ${item.latLngName}</div>
+			<div>지역: ${item.address}</div>
 	</div>
 	<div class="offcanvas offcanvas-end" data-bs-backdrop="false"
 		tabindex="-1" id="offcanvasRight"
@@ -114,7 +114,7 @@
     <div class="carousel-inner">
       <c:forEach var="attach" items="${item.attachs}" varStatus="status">
         <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
-          <img src="/upload/${attach.filename}" class="d-block w-100">
+          <img src="/imgsrc/${attach.filename}" class="d-block w-100">
         </div>
       </c:forEach>
     </div>

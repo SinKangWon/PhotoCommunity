@@ -10,12 +10,12 @@
 	
 	<delete id="delete_gameid">
 		DELETE FROM attach
-		WHERE board_num=#{boardNum}
+		WHERE board_num = #{boardNum}
 	</delete>
 	
 	<delete id="delete">
 		DELETE FROM attach
-		WHERE id=#{id}
+		WHERE id = #{id}
 	</delete>
 	
 </mapper>

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUpload {
-    private static final String rootPath = "c://upload/photocommunity";
+    private static final String rootPath = "c://upload//photocommunity";
 
 
     public static List<Attach> filesUpload(List<MultipartFile> fileList){

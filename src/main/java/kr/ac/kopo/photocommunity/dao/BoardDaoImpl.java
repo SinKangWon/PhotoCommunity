@@ -14,8 +14,8 @@ public class BoardDaoImpl implements BoardDao {
 	SqlSession sql;
 	
 	@Override
-	public Long add(Board item) {
-		return sql.insert("board.add", item);
+	public void add(Board item) {
+		sql.insert("board.add", item);
 	}
 	
 	@Override

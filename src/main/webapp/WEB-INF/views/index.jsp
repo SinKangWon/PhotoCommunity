@@ -41,8 +41,8 @@
 			<c:forEach  var="ation" items="${listB}">
 			locArr.push({
 				markerNum : "${ation.markerNum}",
-				lat : "${ation.lat}",
-				lon : "${ation.lon}"
+				lat : ${ation.lat},
+				lon : ${ation.lon}
 			});
 			</c:forEach>
 
@@ -67,7 +67,7 @@
 				var marker = new naver.maps.Marker({
 					id : locArr[i].markerNum,
 					map : map,
-					position : new naver.maps.LatLng(locArr[i].lat, locArr[i].lon)
+					position : new naver.maps.LatLng(locArr[i].lon, locArr[i].lat)
 					//position : new naver.maps.LatLng(locArr[i].coords)
 					// 지역구의 위도 경도 넣기
 				});
@@ -110,17 +110,13 @@
 					const tr = $("<tr>");
 					$(".modal-body thead").append(tr);
 
-					const boardId = $("<th>");
-					$(".modal-body tr").append(boardId);
-					boardId.text("게시물 번호");
-
 					const boardTitle = $("<th>");
 					$(".modal-body tr").append(boardTitle);
 					boardTitle.text("제목");
 
 					const boardTag = $("<th>");
 					$(".modal-body tr").append(boardTag);
-					boardTag.text("테그");
+					boardTag.text("태그");
 
 					const boardRegDate = $("<th>");
 					$(".modal-body tr").append(boardRegDate);
@@ -145,25 +141,23 @@
 								const tr = $("<tr>");
 								$(".modal-body tbody").append(tr);
 
-								const id = $("<td>");
-								$(".modal-body tr").append(id);
-								id.text(item.id);
-
 								const title = $("<td>");
-								$(".modal-body tr").append(title);
-								title.text(item.title);
+								const titleLink = $("<a>").attr("href","detail/" + item.boardNum);
+								titleLink.append(title);
+								tr.append(title);
+								title.append(titleLink);
+								titleLink.text(item.title);
 
 								const tag = $("<td>");
-								$(".modal-body tr").append(tag);
+								tr.append(tag);
 								tag.text(item.tag);
 
 								const regDate = $("<td>");
-								$(".modal-body tr").append(regDate);
+								tr.append(regDate);
 								regDate.text(item.regDate);
 
-
 								const memberName = $("<td>");
-								$(".modal-body tr").append(memberName);
+								tr.append(memberName);
 								memberName.text(item.memberName);
 
 								$("#modal-btn").trigger("click");

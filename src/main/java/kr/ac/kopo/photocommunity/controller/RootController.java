@@ -70,7 +70,7 @@ public class RootController {
 	@PostMapping("/add")
 	public String add(Board item, @SessionAttribute Member member) {
 		item.setMemberName(member.getName());
-
+		item.setMemberId(member.getId());
 		boardService.add(item);
 
 		return "redirect:.";

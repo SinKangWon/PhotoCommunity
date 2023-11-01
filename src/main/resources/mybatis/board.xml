@@ -15,10 +15,10 @@
 		b.tag,
 		b.reg_date,
 		b.member_num,
-		b.marker_id,
+		b.marker_num,
 		c.lat lat,
 		c.lon lon,
-		c.name markerName,
+		c.address address,
 		m.name memberName,
 		m.email memberEmail
 	FROM board b
@@ -30,7 +30,7 @@
    <insert id="add">
       INSERT INTO board
       (title, contents, tag , reg_date, member_num, marker_num)
-      VALUES (#{title}, #{contents} , #{tag}, NOW(), #{memberNum}, #{markerNum})
+      VALUES (#{title}, #{contents}, #{tag}, NOW(), #{memberNum}, #{markerNum})
       <selectKey resultType="Long" order="AFTER" keyProperty="boardNum">
 		  SELECT LAST_INSERT_ID()
 	  </selectKey>
@@ -50,7 +50,7 @@
 	</resultMap>
 	
    <select id="item" resultMap="BoardMap">
-      SELECT board.*, attach.attach_num attach_num, board_num, filename, LATLNG_NAME, name name
+      SELECT board.*, attach.attach_num attach_num, board_num filename, address, member.name memberName
       FROM board
       LEFT JOIN attach ON board.board_num=attach.board_num
       LEFT JOIN member ON board.member_num = member.member_num

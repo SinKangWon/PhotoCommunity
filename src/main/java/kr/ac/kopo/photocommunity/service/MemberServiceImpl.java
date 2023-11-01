@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
 		Member item = dao.login(member);
 		
 		if(item != null) {
-			
+			member.setId(item.getId());
 			member.setPasswd(null);			
 			member.setName(item.getName());			
 			
