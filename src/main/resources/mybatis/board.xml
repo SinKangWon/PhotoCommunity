@@ -9,7 +9,7 @@
 	
    <select id="getList" resultType="Board">
 	SELECT
-		b.id,
+		b.board_num,
 		b.title,
 		b.contents,
 		b.tag,
@@ -31,9 +31,9 @@
       INSERT INTO board
       (title, contents, tag , reg_date, member_num, marker_num)
       VALUES (#{title}, #{contents} , #{tag}, NOW(), #{memberNum}, #{markerNum})
-      <selectKey  resultType="Long" keyProperty="id" keyColumn="id">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
+      <selectKey resultType="Long" order="AFTER" keyProperty="boardNum">
+		  SELECT LAST_INSERT_ID()
+	  </selectKey>
    </insert>
    
    <delete id="delete">

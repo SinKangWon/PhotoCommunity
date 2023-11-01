@@ -8,7 +8,7 @@
 	</select>
 	
 	<insert id="signup">
-		INSERT INTO member
+		INSERT INTO member (id, passwd, name, email)
 		VALUES (#{id}, PASSWORD(#{passwd}), #{name}, #{email})
 	</insert>
 	

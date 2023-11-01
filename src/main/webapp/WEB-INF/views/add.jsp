@@ -103,17 +103,17 @@ footer {
 					<form method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<label class="form-label">주소:</label> <input type="text"
-								name="latLngName" class="form-control form-control-sm">
+								name="address" class="form-control form-control-sm">
 						</div>
 
 						<div class="form-group">
 							<label class="form-label">위도:</label> <input type="text"
-								name="latLngX" class="form-control form-control-sm">
+								name="lon" class="form-control form-control-sm">
 						</div>
 						
 						<div class="form-group">
 							<label class="form-label">경도:</label> <input type="text"
-								name="latLngY" class="form-control form-control-sm">
+								name="lat" class="form-control form-control-sm">
 						</div>
 						
 
@@ -282,12 +282,12 @@ footer {
 	//검색정보를 테이블로 작성해주고, 지도에 마커를 찍어준다.
 	function insertAddress(address, latitude, longitude) {
 
-		$('input[name=latLngName]').attr('value', address);
-		$('input[name=latLngName]').attr('readonly', true);
-		$('input[name=latLngX]').attr('value',longitude);
-		$('input[name=latLngX]').attr('readonly', true);
-		$('input[name=latLngY]').attr('value',latitude);
-		$('input[name=latLngY]').attr('readonly', true);
+		$('input[name=address]').attr('value', address);
+		$('input[name=address]').attr('readonly', true);
+		$('input[name=lon]').attr('value',longitude);
+		$('input[name=lon]').attr('readonly', true);
+		$('input[name=lat]').attr('value',latitude);
+		$('input[name=lat]').attr('readonly', true);
 
 
 		var map = new naver.maps.Map('map', {

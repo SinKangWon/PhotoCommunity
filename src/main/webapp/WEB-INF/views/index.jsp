@@ -40,9 +40,9 @@
 			var locArr = new Array(); // 지역을 담는 배열 ( 위도경도 )
 			<c:forEach  var="ation" items="${listB}">
 			locArr.push({
-				coordId : "${ation.coordId}",
-				latLngX : "${ation.latLngX}",
-				latLngY : "${ation.latLngY}"
+				markerNum : "${ation.markerNum}",
+				lat : "${ation.lat}",
+				lon : "${ation.lon}"
 			});
 			</c:forEach>
 
@@ -65,9 +65,9 @@
 				let y = dataB[1]; */
 
 				var marker = new naver.maps.Marker({
-					id : locArr[i].coordId,
+					id : locArr[i].markerNum,
 					map : map,
-					position : new naver.maps.LatLng(locArr[i].latLngX, locArr[i].latLngY)
+					position : new naver.maps.LatLng(locArr[i].lat, locArr[i].lon)
 					//position : new naver.maps.LatLng(locArr[i].coords)
 					// 지역구의 위도 경도 넣기
 				});

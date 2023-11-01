@@ -6,7 +6,7 @@ import kr.ac.kopo.photocommunity.model.Board;
 
 public interface BoardDao {
 
-	void add(Board item);
+	Long add(Board item);
 
 	List<Board> getList(Long markerNum);
 

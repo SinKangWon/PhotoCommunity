@@ -37,6 +37,7 @@ public class BoardServiceImpl implements BoardService {
 		Marker markerInfo = new Marker();
 		markerInfo.setLat(item.getLat());
 		markerInfo.setLon(item.getLon());
+		markerInfo.setAddress(item.getAddress());
 
 		markerInfo.setMarkerNum(markerService.findMarkerInfo(markerInfo));
 		if (markerInfo.getMarkerNum() == null) {
@@ -50,6 +51,7 @@ public class BoardServiceImpl implements BoardService {
 
 		item.setAttachs(FileUpload.filesUpload(item.getAttach()));
 
+		item.setBoardNum(dao.add(item));
 		if(item.getAttachs() != null) {
 			for(Attach attach : item.getAttachs()) {
 				attach.setBoardNum(item.getBoardNum());
@@ -58,7 +60,6 @@ public class BoardServiceImpl implements BoardService {
 			}
 		}
 
-		dao.add(item);
 
 	}
 	

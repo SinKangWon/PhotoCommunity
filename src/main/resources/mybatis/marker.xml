@@ -15,11 +15,8 @@
  </select>
  
  <insert id="insert">
-	INSERT INTO marker(lat, lon, name)
-	VALUES(#{lat}, #{lon},#{name})
-	<selectKey resultType="Long" keyProperty="markerId" keyColumn="marker_id">
-		SELECT LAST_INSERT_ID()
-	</selectKey>
+	INSERT INTO marker(lat, lon, address)
+	VALUES(#{lat}, #{lon},#{address})
  </insert>
 	<select id="findMarkerInfo" resultType="Long">
 		SELECT marker_num

@@ -4,13 +4,13 @@
 <mapper namespace="attach">
 
 	<insert id="add">
-		INSERT INTO attach(filename, board_id)
-		VALUES(#{filename}, #{boardId})
+		INSERT INTO attach(filename, board_num)
+		VALUES(#{filename}, #{boardNum})
 	</insert>	
 	
 	<delete id="delete_gameid">
 		DELETE FROM attach
-		WHERE board_id=#{boardId}
+		WHERE board_num=#{boardNum}
 	</delete>
 	
 	<delete id="delete">

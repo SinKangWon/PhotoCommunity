@@ -22,7 +22,7 @@ public class MarkerDaoImpl implements MarkerDao {
 
 	@Override
 	public Long findMarkerInfo(Marker markerInfo) {
-		return sql.selectOne("marker.markerInfo", markerInfo);
+		return sql.selectOne("marker.findMarkerInfo", markerInfo);
 	}
 
 	@Override
